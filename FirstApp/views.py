@@ -9,3 +9,6 @@ def index(request):
 
 def home(request):
     return HttpResponse("WELCOME TO HOME")
+
+def img(request):
+    return render(request,'FirstApp/static_image.html')
