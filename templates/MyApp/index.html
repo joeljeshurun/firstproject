@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to my application</title>
-</head>
-<body>
-<h1>From Index.html</h1>
+
+{% extends 'MyApp/base.html' %}
+{#{% load staticfiles %}#}
+{% block body_block %}
+<h1>Click the below link to view list of users</h1>
+    <a href="{% url 'MyApp:user' %}">User Details</a>
+{#    <object width="400" height="400" data="{% static "PDFs/PYTHON AGENDA.pdf" %}"></object>#}
 <h3>{{ insert_me }}</h3>
 {{ second_key }}
-</body>
-</html>
+{% endblock %}

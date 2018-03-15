@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'MyApp/base.html' %}
+{% block body_block %}
 
 {% if user_list %}
+    <style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
     <table>
     <thead>
     <th>First Name</th>
@@ -15,8 +16,8 @@
     </thead>
     {% for user in user_list %}
     <tr>
-    <td> {{ user.first_name }}</td>
-    <td>{{ user.last_name }}</td>
+    <td>{{ user.first_name|upper }}</td>
+    <td>{{ user.last_name|upper }}</td>
     <td>{{ user.email_id }}</td>
     </tr>
     {% endfor %}
@@ -35,5 +36,4 @@
 {#    </ul>#}
 {#{% endfor %}#}
 {#</ol>#}
-</body>
-</html>
+{% endblock %}

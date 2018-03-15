@@ -30,3 +30,8 @@ def form_detail_view(request):
             # user.save()
     return render(request, 'MyApp/form_details.html',{'form':form})
 
+def relative(request):
+    return render(request,'MyApp/RelativeURL.html')
+
+def home(request):
+    return render(request, 'MyApp/home.html')
