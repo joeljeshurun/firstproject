@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="{% url 'ThirdApp:index' %}">Index</a></li>
+         {% if user.is_authenticated %}
+
+            <li><a href="{% url 'ThirdApp:special' %}">Special</a> </li>
+        {% endif %}
+
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'ThirdApp:register' %}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'ThirdApp:logout' %}"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+{#            <li><a href="{% url 'ThirdApp:special' %}">Special</a> </li>#}
+        {% else %}
+            <li><a href="{% url 'ThirdApp:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}
+      </ul>
+  </div>
+</nav>
+
+
+{% block body_block %}
+
+{% endblock %}
+</body>
+</html>
