@@ -12,6 +12,9 @@ from ThirdApp.models import UserProfileInfo
 def index(request):
     return render(request,'ThirdApp/index.html')
 
+def home(request):
+    return render(request,'ThirdApp/home.html')
+
 def register(request):
     register=False
     if request.method == 'POST':
@@ -66,3 +69,29 @@ def special(request):
         print("expired")
 
     return render(request,'ThirdApp/special.html',{'user':user,'user_profile':user_profile})
+
+@login_required
+def delete_user(request):
+    if request.session['username']:
+        user = User.objects.get(username=request.session['username']).delete()
+        del request.session['username']
+        user_logout(request)
+        return HttpResponseRedirect(reverse('ThirdApp:index'))
+    else:
+        return HttpResponse("Please login!")
+
+@login_required
+def edit_user(request):
+    name=User.objects.get(username=request.session['username'])
+    user_info=UserProfileInfo.objects.get(user=name)
+    if request.method == 'POST':
+        user_form=forms.EditUserForm(request.POST,instance=name)
+        profile_form=forms.EditUserProfileForm(request.POST,request.FILES,instance=user_info)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return HttpResponseRedirect(reverse('ThirdApp:index'))
+    else:
+        user_form=forms.EditUserForm(instance=name)
+        profile_form=forms.EditUserProfileForm(instance=user_info)
+    return render(request,'ThirdApp/edit.html',context={'user_form':user_form,'profile_form':profile_form})

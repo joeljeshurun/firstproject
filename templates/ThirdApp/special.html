@@ -1,8 +1,8 @@
 {% extends 'ThirdApp/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
-    {{ user.username }}
-    {{ user.email }}
-    {{ user_profile.portfolio_site }}
-    <img src="{{ MEDIA_URL }}{{ user_profile.profile_pic }}" alt="Image not available">
+    <p><b>Username:</b> {{ user.username }}</p>
+    <p><b>Email:</b> {{ user.email }}</p>
+    <p><b>Portfolio Site:</b> {{ user_profile.portfolio_site }}</p>
+    <p><b>Profile picture:</b> <img src="{{ MEDIA_URL }}{{ user_profile.profile_pic.url }}" alt="Image not available" class="img-rounded" width="150" height="150"></p>
 {% endblock %}
