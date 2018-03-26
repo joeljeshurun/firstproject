@@ -6,7 +6,7 @@ django.setup()
 
 from faker import Faker
 from MyApp.models import User
-
+# fager initiation
 fakegen = Faker()
 
 def add_user(n):
